@@ -3,6 +3,9 @@ package main
 import "github.com/vspaz/simplelogger/pkg/logging"
 
 func main() {
-	logger := logging.GetTextLogger("info").Logger
-	logger.Info("foobar")
+	textLogger := logging.GetTextLogger("info").Logger
+	textLogger.Info("foobar")
+
+	jsonLogger := logging.GetJsonLogger("info").Logger
+	jsonLogger.Info("foobar")
 }
