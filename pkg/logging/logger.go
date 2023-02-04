@@ -52,16 +52,15 @@ func createLogger(logLevel logrus.Level, formatter *logrus.Formatter) *logrus.Lo
 	return logger
 }
 
-func configureLogger(logLevel string, formatterType string) *logrus.Logger {
+func configureLogger(logLevel logrus.Level, formatterType string) *logrus.Logger {
 	formatter := formatterFactory(formatterType)
-	logrusLogLevel := getLogLevel(logLevel)
-	return createLogger(logrusLogLevel, &formatter)
+	return createLogger(logLevel, &formatter)
 }
 
-func setLogLevel(logLevels ...string) string {
-	logLevel := "info"
+func setLogLevel(logLevels ...string) logrus.Level {
+	logLevel := logrus.InfoLevel
 	if len(logLevels) > 0 {
-		logLevel = logLevels[0]
+		logLevel = getLogLevel(logLevels[0])
 	}
 	return logLevel
 }
