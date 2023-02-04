@@ -5,38 +5,26 @@ import (
 	"sync"
 )
 
-type Level uint32
-
 var once sync.Once
 
-const (
-	PanicLevel = iota
-	FatalLevel
-	ErrorLevel
-	WarnLevel
-	InfoLevel
-	DebugLevel
-	TraceLevel
-)
-
-func getLogLevel(logLevel string) int {
+func getLogLevel(logLevel string) logrus.Level {
 	switch logLevel {
 	case "panic":
-		return
+		return logrus.PanicLevel
 	case "fatal":
-		return FatalLevel
+		return logrus.FatalLevel
 	case "error":
-		return ErrorLevel
+		return logrus.ErrorLevel
 	case "warning":
-		return WarnLevel
+		return logrus.WarnLevel
 	case "info":
-		return InfoLevel
+		return logrus.InfoLevel
 	case "debug":
-		return DebugLevel
+		return logrus.DebugLevel
 	case "trace":
-		return TraceLevel
+		return logrus.TraceLevel
 	default:
-		return InfoLevel
+		return logrus.InfoLevel
 	}
 }
 
