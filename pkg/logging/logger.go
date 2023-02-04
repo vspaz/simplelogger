@@ -22,7 +22,7 @@ const (
 func getLogLevel(logLevel string) int {
 	switch logLevel {
 	case "panic":
-		return PanicLevel
+		return
 	case "fatal":
 		return FatalLevel
 	case "error":
