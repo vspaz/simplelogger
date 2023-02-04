@@ -54,7 +54,7 @@ func createLogger(logLevel logrus.Level, formatter *logrus.Formatter) *logrus.Lo
 
 func configureLogger(logLevel string, formatterType string) *logrus.Logger {
 	formatter := formatterFactory(formatterType)
-	logrusLogLevel := logrus.Level(getLogLevel(logLevel))
+	logrusLogLevel := getLogLevel(logLevel)
 	return createLogger(logrusLogLevel, &formatter)
 }
 
@@ -66,16 +66,16 @@ func setLogLevel(logLevels ...string) string {
 	return logLevel
 }
 
-type singletonLogger struct {
+type SingletonLogger struct {
 	Logger *logrus.Logger
 }
 
-var Logger *singletonLogger
+var Logger *SingletonLogger
 
-func GetTextLogger(logLevels ...string) *singletonLogger {
+func GetTextLogger(logLevels ...string) *SingletonLogger {
 	once.Do(
 		func() {
-			Logger = &singletonLogger{
+			Logger = &SingletonLogger{
 				Logger: configureLogger(setLogLevel(logLevels...), "text"),
 			}
 		},
@@ -83,10 +83,10 @@ func GetTextLogger(logLevels ...string) *singletonLogger {
 	return Logger
 }
 
-func GetJsonLogger(logLevels ...string) *singletonLogger {
+func GetJsonLogger(logLevels ...string) *SingletonLogger {
 	once.Do(
 		func() {
-			Logger = &singletonLogger{
+			Logger = &SingletonLogger{
 				Logger: configureLogger(setLogLevel(logLevels...), "json"),
 			}
 		},
