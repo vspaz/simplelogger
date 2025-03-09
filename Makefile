@@ -23,5 +23,4 @@ lint:
 .PHONY: upgrade
 upgrade:
 	go mod tidy
-	go get -u all ./...
-
+	go get -u all
