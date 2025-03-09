@@ -1,7 +1,7 @@
 module github.com/vspaz/simplelogger
 
-go 1.20
+go 1.24
 
-require github.com/sirupsen/logrus v1.9.0
+require github.com/sirupsen/logrus v1.9.3
 
-require golang.org/x/sys v0.5.0 // indirect
+require golang.org/x/sys v0.31.0 // indirect
